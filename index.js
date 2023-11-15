@@ -1,73 +1,96 @@
-// Sample data (you will fetch this data from your API)
-const playersData = [
-    { id: 1, name: "Buddy", breed: "Golden Retriever" },
-    { id: 2, name: "Daisy", breed: "Beagle" },
-    // Add more players here
-];
+const playerContainer = document.getElementById('all-players-container');
+const newPlayerFormContainer = document.getElementById('new-player-form');
 
-const playerCardsContainer = document.getElementById("player-cards");
-const playerInfoContainer = document.getElementById("player-info");
+// Add your cohort name to the cohortName variable below, replacing the 'COHORT-NAME' placeholder
+const cohortName = 'YOUR COHORT NAME HERE';
+// Use the APIURL variable for fetch requests
+const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${2308-ACC-PT-WEB-PT-B/players}/`;
 
-// Function to render player cards
-function renderPlayerCards() {
-    playerCardsContainer.innerHTML = '';
-    playersData.forEach(player => {
-        const card = document.createElement("div");
-        card.className = "player-card";
-        card.innerHTML = `
-            <h3>${player.name}</h3>
-            <p>Breed: ${player.breed}</p>
-            <button class="view-details" data-id="${player.id}">View Details</button>
-            <button class="remove-player" data-id="${player.id}">Remove</button>
-        `;
-        playerCardsContainer.appendChild(card);
-    });
+/**
+ * It fetches all players from the API and returns them
+ * @returns An array of objects.
+ */
+const fetchAllPlayers = async () => {
+    try {
+
+    } catch (err) {
+        console.error('Uh oh, trouble fetching players!', err);
+    }
+};
+
+const fetchSinglePlayer = async (playerId) => {
+    try {
+
+    } catch (err) {
+        console.error(`Oh no, trouble fetching player #${playerId}!`, err);
+    }
+};
+
+const addNewPlayer = async (playerObj) => {
+    try {
+
+    } catch (err) {
+        console.error('Oops, something went wrong with adding that player!', err);
+    }
+};
+
+const removePlayer = async (playerId) => {
+    try {
+
+    } catch (err) {
+        console.error(
+            `Whoops, trouble removing player #${playerId} from the roster!`,
+            err
+        );
+    }
+};
+
+/**
+ * It takes an array of player objects, loops through them, and creates a string of HTML for each
+ * player, then adds that string to a larger string of HTML that represents all the players. 
+ * 
+ * Then it takes that larger string of HTML and adds it to the DOM. 
+ * 
+ * It also adds event listeners to the buttons in each player card. 
+ * 
+ * The event listeners are for the "See details" and "Remove from roster" buttons. 
+ * 
+ * The "See details" button calls the `fetchSinglePlayer` function, which makes a fetch request to the
+ * API to get the details for a single player. 
+ * 
+ * The "Remove from roster" button calls the `removePlayer` function, which makes a fetch request to
+ * the API to remove a player from the roster. 
+ * 
+ * The `fetchSinglePlayer` and `removePlayer` functions are defined in the
+ * @param playerList - an array of player objects
+ * @returns the playerContainerHTML variable.
+ */
+const renderAllPlayers = (playerList) => {
+    try {
+        
+    } catch (err) {
+        console.error('Uh oh, trouble rendering players!', err);
+    }
+};
+
+
+/**
+ * It renders a form to the DOM, and when the form is submitted, it adds a new player to the database,
+ * fetches all players from the database, and renders them to the DOM.
+ */
+const renderNewPlayerForm = () => {
+    try {
+        
+    } catch (err) {
+        console.error('Uh oh, trouble rendering the new player form!', err);
+    }
 }
 
-// Function to render player details
-function renderPlayerDetails(player) {
-    playerInfoContainer.innerHTML = '';
-    playerInfoContainer.innerHTML = `
-        <h3>${player.name}</h3>
-        <p>Breed: ${player.breed}</p>
-    `;
+const init = async () => {
+    const players = await fetchAllPlayers();
+    renderAllPlayers(players);
+
+    renderNewPlayerForm();
 }
 
-// Event listener for "Add Puppy" button
-const addPlayerForm = document.getElementById("add-player-form");
-addPlayerForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const playerName = document.getElementById("player-name").value;
-    const playerBreed = document.getElementById("player-breed").value;
-    // Add logic to send the new player data to your API and update the roster
-    // For now, we'll just add the new player to the sample data
-    playersData.push({ name: playerName, breed: playerBreed });
-    renderPlayerCards();
-});
-
-// Event delegation for "View Details" button
-playerCardsContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("view-details")) {
-        const playerId = parseInt(event.target.getAttribute("data-id"));
-        const player = playersData.find(p => p.id === playerId);
-        if (player) {
-            renderPlayerDetails(player);
-        }
-    }
-});
-
-// Event delegation for "Remove" button
-playerCardsContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("remove-player")) {
-        const playerId = parseInt(event.target.getAttribute("data-id"));
-        const playerIndex = playersData.findIndex(p => p.id === playerId);
-        if (playerIndex !== -1) {
-            playersData.splice(playerIndex, 1);
-            renderPlayerCards();
-            playerInfoContainer.innerHTML = '';
-        }
-    }
-});
-
-// Initial rendering
-renderPlayerCards();
+init();
